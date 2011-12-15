@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/simple_site.rb",
     "lib/simple_site/haml_helper.rb",
+    "simple_site.gemspec",
     "test/helper.rb",
     "test/test_simple_site.rb"
   ]
