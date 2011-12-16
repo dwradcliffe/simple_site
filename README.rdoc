@@ -17,3 +17,6 @@ Description goes here.
 Copyright (c) 2011 David Radcliffe. See LICENSE.txt for
 further details.
 
+== Dependency Status
+
+{<img src="https://gemnasium.com/dwradcliffe/simple_site.png" alt="Dependency Status" />}[https://gemnasium.com/dwradcliffe/simple_site]
