@@ -9,9 +9,11 @@ class SimpleSite
   attr_reader :options
   
   def initialize(options = {})
-    @options = options
+    @options = {}
+    @options[:buckets] ||= [options.delete(:bucket)].compact
+    options[:buckets].each {|bucket| @options[:buckets] << bucket } unless options[:buckets].nil?
+    @options.merge!(options)
     @options[:js_files] ||= Dir['_js/*.js']
-    @options[:buckets] ||= []
   end
   
   def js_files=(files)
