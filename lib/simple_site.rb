@@ -1,5 +1,7 @@
 require 'aws/s3'
 require 'uglifier'
+require 'simple_site/haml_context'
+require 'haml'
 
 class SimpleSite
   
@@ -10,7 +12,8 @@ class SimpleSite
   end
   
   def generate_html
-    system "haml -r simple_site/haml_helper.rb _src/index.haml public/index.html"
+    engine = Haml::Engine.new(File.read('_src/index.haml'))
+    File.open('public/index.html', 'w') {|f| f.write(engine.render(SimpleSite::HamlContext.new)) }
     puts "Regenerated site!"
   end
   
