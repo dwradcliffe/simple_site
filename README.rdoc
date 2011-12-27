@@ -1,6 +1,6 @@
 = simple_site
 
-Description goes here.
+Helps build simple websites using haml and sass. Compresses your js. Deploys to AWS S3.
 
 == Contributing to simple_site
  
@@ -20,3 +20,7 @@ further details.
 == Dependency Status
 
 {<img src="https://gemnasium.com/dwradcliffe/simple_site.png" alt="Dependency Status" />}[https://gemnasium.com/dwradcliffe/simple_site]
+
+== Build Status
+
+{<img src="https://secure.travis-ci.org/dwradcliffe/simple_site.png" alt="Build Status" />}[http://travis-ci.org/dwradcliffe/simple_site]
