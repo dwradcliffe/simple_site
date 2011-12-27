@@ -1,14 +1,25 @@
 require 'aws/s3'
 require 'uglifier'
+require 'simple_site/tasks'
 require 'simple_site/haml_context'
 require 'haml'
 
 class SimpleSite
   
+  attr_reader :options
+  
   def initialize(options = {})
     @options = options
     @options[:js_files] ||= Dir['_js/*.js']
     @options[:buckets] ||= []
+  end
+  
+  def js_files=(files)
+    @options[:js_files] = files
+  end
+  
+  def buckets=(buckets)
+    @options[:buckets] = buckets
   end
   
   def generate_html
@@ -52,8 +63,8 @@ class SimpleSite
       age = 7*24*60*60
       options = {
         :access => :public_read,
-        :cache_control => "max-age=#{age}",
-        :expires => age.from_now.httpdate
+        :cache_control => "max-age=#{age}"
+        # :expires => age.from_now.httpdate
       }
       puts "  --> #{file}"
       @options[:buckets].each do |bucket|
