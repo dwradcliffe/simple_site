@@ -37,11 +37,13 @@ module SimpleSite
     end
     
     def generate_css
+      return unless File.exists? '_sass/style.sass'
       system "sass _sass/style.sass public/css/style.css"
       puts "Regenerated css!"
     end
     
     def generate_js
+      return if @options[:js_files].empty?
       system 'mkdir -p _tmp; touch _tmp/js.js; :> _tmp/js.js'
       @options[:js_files].each do |f|
         system "cat _js/#{f} >> _tmp/js.js"
