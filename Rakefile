@@ -1,29 +1,4 @@
-# encoding: utf-8
-
-require 'rubygems'
-require 'bundler'
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
-require 'rake'
-
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "simple_site"
-  gem.homepage = "http://github.com/dwradcliffe/simple_site"
-  gem.license = "MIT"
-  gem.summary = %Q{Simple website builder.}
-  gem.description = %Q{Helps build simple websites using haml and sass. Compresses your js. Deploys to AWS S3.}
-  gem.email = "radcliffe.david@gmail.com"
-  gem.authors = ["David Radcliffe"]
-  # dependencies defined in Gemfile
-end
-Jeweler::RubygemsDotOrgTasks.new
+require "bundler/gem_tasks"
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
@@ -32,22 +7,15 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
-
 task :default => :test
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "simple_site #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+namespace :doc do
+  require 'yard'
+  YARD::Rake::YardocTask.new do |task|
+    task.files   = ['README.md', 'LICENSE.md', 'lib/**/*.rb']
+    task.options = [
+      '--output-dir', 'doc/yard',
+      '--markup', 'markdown',
+    ]
+  end
 end

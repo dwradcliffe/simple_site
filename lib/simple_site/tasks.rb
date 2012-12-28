@@ -1,7 +1,7 @@
 require 'rake'
 require 'rake/tasklib'
 
-class SimpleSite
+module SimpleSite
   # Rake tasks for managing your site.
   #
   # Here's a basic usage example:
@@ -15,7 +15,7 @@ class SimpleSite
     attr_reader :site
     
     def initialize(&site_building_block)
-      @site = SimpleSite.new
+      @site = SimpleSite::Site.new
       site_building_block.call @site
       define
     end

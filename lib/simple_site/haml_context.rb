@@ -1,4 +1,4 @@
-class SimpleSite
+module SimpleSite
   class HamlContext
 
     def render_file filename
