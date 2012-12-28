@@ -21,6 +21,10 @@ module SimpleSite
     def js_files=(files)
       @options[:js_files] = files
     end
+
+    def bucket=(bucket)
+      @options[:buckets] = [bucket]
+    end
     
     def buckets=(buckets)
       @options[:buckets] = buckets
