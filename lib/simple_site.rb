@@ -60,7 +60,7 @@ module SimpleSite
     
     def deploy_file!
       Dir.chdir('public')
-      ENV['FILES'].select { |f| File.file?(f) }.each do |file|
+      ENV['FILES'].split(",").select { |f| File.file?(f) }.each do |file|
         deploy file
       end
     end
