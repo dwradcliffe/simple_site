@@ -35,26 +35,26 @@ module SimpleSite
           
         end
       
-        desc "Generate Entire Site"
-        task :gen => ["gen:html", "gen:css", "gen:js"]
+        desc "Build Entire Site"
+        task :build => ["build:html", "build:css", "build:js"]
       
-        namespace :gen do
+        namespace :build do
 
           task :ensure_output_dir do
             Dir.mkdir('public') unless Dir.exists?('public')
           end
         
-          desc "Generate HTML"
+          desc "Build HTML"
           task :html => :ensure_output_dir do
             @site.generate_html
           end
         
-          desc "Generate CSS"
+          desc "Build CSS"
           task :css => :ensure_output_dir do
             @site.generate_css
           end
         
-          desc "Generate JS"
+          desc "Build JS"
           task :js => :ensure_output_dir do
             @site.generate_js
           end

@@ -26,7 +26,7 @@ module SimpleSite
     def generate_html
       engine = Haml::Engine.new(File.read('_src/index.haml'))
       File.open('public/index.html', 'w') {|f| f.write(engine.render(SimpleSite::HamlContext.new)) }
-      puts "Regenerated site!"
+      puts "Regenerated html!"
     end
     
     def generate_css
