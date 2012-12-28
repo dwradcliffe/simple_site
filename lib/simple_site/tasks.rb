@@ -39,19 +39,23 @@ module SimpleSite
         task :gen => ["gen:html", "gen:css", "gen:js"]
       
         namespace :gen do
+
+          task :ensure_output_dir do
+            Dir.mkdir('public') unless Dir.exists?('public')
+          end
         
           desc "Generate HTML"
-          task :html do
+          task :html => :ensure_output_dir do
             @site.generate_html
           end
         
           desc "Generate CSS"
-          task :css do
+          task :css => :ensure_output_dir do
             @site.generate_css
           end
         
           desc "Generate JS"
-          task :js do
+          task :js => :ensure_output_dir do
             @site.generate_js
           end
         
